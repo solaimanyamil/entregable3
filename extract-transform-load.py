@@ -5,10 +5,24 @@ from airflow.providers.amazon.aws.operators.redshift import RedshiftSQLOperator
 from airflow.operators.python_operator import PythonOperator
 from funciones import get_data_from_api, transform_data, load_data_to_redshift
 
+#               ************* PARÁMETROS Y DEFINICIÓN DEL DAG *************
+
+default_args={
+    'owner': 'Yamil',
+    'retries': 5,
+    'retry_delay': timedelta(minutes=5)}
+
+BC_dag = DAG(
+    default_args=default_args,
+    dag_id='entregable3',
+    description='DAG para extracción, transformación y carga de datos',
+    start_date=datetime(2023,8,22),
+    schedule_interval="@daily",
+    catchup=False)
 
 #               ************* FUNCIONES *************
 
-def extract():
+def extract_and_transform():
     # Lista de temporadas consultadas:
     seasons = [2023, 2011]
     
@@ -31,18 +45,10 @@ def extract():
 
     # Combinar todos los DataFrames en uno solo:
     df_final = pd.concat(all_dfs, ignore_index=True)
-    
-    # Retorna el DataFrame final:
-    return df_final
 
-
-def transform(df_final):
-    return transform_data(df_final)
-
-
-def load(df_transformed):
-
+def load():
     # Configurar la conexión con Amazon Redshift:
+    df_transformed = df_final
     db_username = 'solaimanyamil_coderhouse'
     db_password = 'NbOb637sCW'
     db_name = 'data-engineer-database'
@@ -55,49 +61,25 @@ def load(df_transformed):
     load_data_to_redshift(df_transformed, table_name, schema_name, db_username, db_password, db_name, db_host, db_port)
 
 
-#               ************* PARÁMETROS Y DEFINICIÓN DEL DAG *************
-
-
-default_args={
-    'owner': 'Yamil',
-    'retries': 5,
-    'retry_delay': timedelta(minutes=5)}
-
-BC_dag = DAG(
-    default_args=default_args,
-    dag_id='entregable3',
-    description='DAG para extracción, transformación y carga de datos',
-    start_date=datetime(2023,8,21),
-    schedule_interval="@daily",
-    catchup=False)
-
-
 #                   ************* DEFINICIÓN DE LAS TAREAS *************
 
 
-# 1. Extracción:
+# 1. Extracción y transformación:
 task_1 = PythonOperator(
-    task_id='extract_data',
-    python_callable=extract,
+    task_id='extract_and_transform_data',
+    python_callable=extract_and_transform,
     #op_args=["{{ ds }} {{ execution_date.hour }}"],
     dag=BC_dag)
 
-# 2. Transformación:
-task_2 = PythonOperator(
-    task_id='transform_data',
-    python_callable=transform,
-    #op_args=["{{ ds }} {{ execution_date.hour }}"],
-    dag=BC_dag)
-
-# 3. Conexión a Redshift:
-task_3= PythonOperator(
+# 2. Conexión a Redshift:
+task_2= PythonOperator(
     task_id="load_data_to_redshift",
     python_callable=load,
     #op_args=["{{ ds }} {{ execution_date.hour }}"],
     dag=BC_dag)
 
 
-#               ************* ORDEN DE LAS TAREAS *************
+#                   ************* ORDEN DE LAS TAREAS *************
 
 
-task_1 >> task_2 >> task_3
+task_1 >> task_2
