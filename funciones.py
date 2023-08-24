@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 
 
 def get_data_from_api(url):
-
+    
     '''Función que hace la solicitud a la API y devuelve
     los datos en formato JSON.'''
     
@@ -22,7 +22,7 @@ def get_data_from_api(url):
         
 def transform_data(data):
     
-    '''Función que recibe datos en formato JSON,
+    '''' Función que recibe datos en formato JSON,
     los transforma en un DF y realiza algunos ajustes
     para adaptar el DF a la tabla creada en Redshift.'''
     
@@ -81,7 +81,7 @@ def transform_data(data):
 
 def load_data_to_redshift(df_final, table_name, schema_name, db_username, db_password, db_name, db_host, db_port):
     
-    '''Función que configura la conexión con Redshift
+    ''''Función que configura la conexión con Redshift
     y carga el DataFrame en la tabla nba_players.'''
     
     # Objeto de conexión al motor de BD:
@@ -102,3 +102,41 @@ def load_data_to_redshift(df_final, table_name, schema_name, db_username, db_pas
     # Cargar los datos en la tabla de Redshift (solo los que no están duplicados):
     df_no_duplicates.to_sql(table_name, engine, schema=schema_name, if_exists='append', index=False)
     print("Los datos han sido cargados exitosamente en Redshift.")
+        
+       
+def load():
+    # Lista de temporadas consultadas:
+    seasons = [2023, 2011]
+
+    # Lista para almacenar los DataFrames de todas las temporadas:
+    all_dfs = []
+
+    for season in seasons:
+        url = f'https://nba-stats-db.herokuapp.com/api/playerdata/topscorers/playoffs/{season}/'
+        all_results = []
+        while url:
+            data, url = get_data_from_api(url)
+            all_results.extend(data)
+            if url is None:
+                break  
+            
+        # Transformar los datos y obtener el DataFrame resultante:
+        df = transform_data(all_results)
+        # Agregar el DataFrame al listado de DataFrames:
+        all_dfs.append(df)
+
+    # Combinar todos los DataFrames en uno solo:
+    df_final = pd.concat(all_dfs, ignore_index=True)
+
+
+    # Configurar la conexión con Amazon Redshift:
+    db_username = 'solaimanyamil_coderhouse'
+    db_password = 'NbOb637sCW'
+    db_name = 'data-engineer-database'
+    db_host = 'data-engineer-cluster.cyhh5bfevlmn.us-east-1.redshift.amazonaws.com'
+    db_port = '5439'
+
+    # Cargar los datos en la tabla de Redshift:
+    table_name = 'nba_players'
+    schema_name = 'solaimanyamil_coderhouse'
+    load_data_to_redshift(df_final, table_name, schema_name, db_username, db_password, db_name, db_host, db_port)
