@@ -24,7 +24,7 @@ BC_dag = DAG(
     default_args=default_args,
     dag_id='entregable3',
     description='DAG para extracción, transformación y carga de datos',
-    start_date=datetime(2023,8,24),
+    start_date=datetime(2023,8,25),
     schedule_interval="@daily",
     catchup=False)
 
