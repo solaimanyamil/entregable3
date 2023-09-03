@@ -1,0 +1,26 @@
+[2023-08-30 19:23:30,216] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: entregable3.extract_and_transform_data manual__2023-08-25T17:57:52.320693+00:00 [queued]>
+[2023-08-30 19:23:30,230] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: entregable3.extract_and_transform_data manual__2023-08-25T17:57:52.320693+00:00 [queued]>
+[2023-08-30 19:23:30,232] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-30 19:23:30,234] {taskinstance.py:1377} INFO - Starting attempt 3 of 6
+[2023-08-30 19:23:30,235] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-30 19:23:30,257] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): extract_and_transform_data> on 2023-08-25 17:57:52.320693+00:00
+[2023-08-30 19:23:30,262] {standard_task_runner.py:52} INFO - Started process 585 to run task
+[2023-08-30 19:23:30,265] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'entregable3', 'extract_and_transform_data', 'manual__2023-08-25T17:57:52.320693+00:00', '--job-id', '100', '--raw', '--subdir', 'DAGS_FOLDER/entregable3.py', '--cfg-path', '/tmp/tmpph2id43e', '--error-file', '/tmp/tmptbnv2uax']
+[2023-08-30 19:23:30,267] {standard_task_runner.py:80} INFO - Job 100: Subtask extract_and_transform_data
+[2023-08-30 19:23:30,347] {task_command.py:371} INFO - Running <TaskInstance: entregable3.extract_and_transform_data manual__2023-08-25T17:57:52.320693+00:00 [running]> on host eebeded14cb4
+[2023-08-30 19:23:30,467] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Yamil
+AIRFLOW_CTX_DAG_ID=entregable3
+AIRFLOW_CTX_TASK_ID=extract_and_transform_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-08-25T17:57:52.320693+00:00
+AIRFLOW_CTX_TRY_NUMBER=3
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-08-25T17:57:52.320693+00:00
+[2023-08-30 19:23:38,668] {logging_mixin.py:115} INFO - No hay nuevos datos para cargar en la tabla.
+[2023-08-30 19:23:38,670] {python.py:173} INFO - Done. Returned value was: None
+[2023-08-30 19:23:38,746] {taskinstance.py:1420} INFO - Marking task as SUCCESS. dag_id=entregable3, task_id=extract_and_transform_data, execution_date=20230825T175752, start_date=20230830T192330, end_date=20230830T192338
+[2023-08-30 19:23:38,813] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-08-30 19:23:38,857] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-08-30 19:23:38,878] {dagrun.py:564} INFO - Marking run <DagRun entregable3 @ 2023-08-25 17:57:52.320693+00:00: manual__2023-08-25T17:57:52.320693+00:00, externally triggered: True> successful
+[2023-08-30 19:23:38,880] {dagrun.py:624} INFO - DagRun Finished: dag_id=entregable3, execution_date=2023-08-25 17:57:52.320693+00:00, run_id=manual__2023-08-25T17:57:52.320693+00:00, run_start_date=2023-08-25 17:57:53.314973+00:00, run_end_date=2023-08-30 19:23:38.879945+00:00, run_duration=437145.564972, state=success, external_trigger=True, run_type=manual, data_interval_start=2023-08-24 00:00:00+00:00, data_interval_end=2023-08-25 00:00:00+00:00, dag_hash=466d69ecde00bc94d81956035177e728

@@ -1,0 +1,31 @@
+[2023-08-22 17:18:35,746] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: entregable3.get_data_from_api manual__2023-08-22T17:17:45.436091+00:00 [queued]>
+[2023-08-22 17:18:35,880] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: entregable3.get_data_from_api manual__2023-08-22T17:17:45.436091+00:00 [queued]>
+[2023-08-22 17:18:35,885] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-22 17:18:35,896] {taskinstance.py:1377} INFO - Starting attempt 1 of 6
+[2023-08-22 17:18:35,896] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-22 17:18:36,001] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): get_data_from_api> on 2023-08-22 17:17:45.436091+00:00
+[2023-08-22 17:18:36,060] {standard_task_runner.py:52} INFO - Started process 14649 to run task
+[2023-08-22 17:18:36,050] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'entregable3', 'get_data_from_api', 'manual__2023-08-22T17:17:45.436091+00:00', '--job-id', '69', '--raw', '--subdir', 'DAGS_FOLDER/entregable3.py', '--cfg-path', '/tmp/tmpdynsdue3', '--error-file', '/tmp/tmpwhyr7eiz']
+[2023-08-22 17:18:36,079] {standard_task_runner.py:80} INFO - Job 69: Subtask get_data_from_api
+[2023-08-22 17:18:36,502] {task_command.py:371} INFO - Running <TaskInstance: entregable3.get_data_from_api manual__2023-08-22T17:17:45.436091+00:00 [running]> on host eebeded14cb4
+[2023-08-22 17:18:36,854] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Yamil
+AIRFLOW_CTX_DAG_ID=entregable3
+AIRFLOW_CTX_TASK_ID=get_data_from_api
+AIRFLOW_CTX_EXECUTION_DATE=2023-08-22T17:17:45.436091+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-08-22T17:17:45.436091+00:00
+[2023-08-22 17:18:36,861] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+TypeError: get_data_from_api() missing 1 required positional argument: 'url'
+[2023-08-22 17:18:36,882] {taskinstance.py:1420} INFO - Marking task as UP_FOR_RETRY. dag_id=entregable3, task_id=get_data_from_api, execution_date=20230822T171745, start_date=20230822T171835, end_date=20230822T171836
+[2023-08-22 17:18:36,969] {standard_task_runner.py:97} ERROR - Failed to execute job 69 for task get_data_from_api (get_data_from_api() missing 1 required positional argument: 'url'; 14649)
+[2023-08-22 17:18:37,022] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-08-22 17:18:37,151] {dagrun.py:1081} ERROR - Failed to get task '<TaskInstance: entregable3.extract_and_transform_data manual__2023-08-22T17:17:45.436091+00:00 [removed]>' for dag 'entregable3'. Marking it as removed.
+[2023-08-22 17:18:37,196] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,24 @@
+[2023-08-23 14:22:29,552] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: entregable3.extract_and_transform_data manual__2023-08-23T14:22:27.256328+00:00 [queued]>
+[2023-08-23 14:22:29,567] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: entregable3.extract_and_transform_data manual__2023-08-23T14:22:27.256328+00:00 [queued]>
+[2023-08-23 14:22:29,568] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-23 14:22:29,577] {taskinstance.py:1377} INFO - Starting attempt 1 of 6
+[2023-08-23 14:22:29,578] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-23 14:22:29,599] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): extract_and_transform_data> on 2023-08-23 14:22:27.256328+00:00
+[2023-08-23 14:22:29,605] {standard_task_runner.py:52} INFO - Started process 3461 to run task
+[2023-08-23 14:22:29,610] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'entregable3', 'extract_and_transform_data', 'manual__2023-08-23T14:22:27.256328+00:00', '--job-id', '88', '--raw', '--subdir', 'DAGS_FOLDER/entregable3.py', '--cfg-path', '/tmp/tmpr_jo6qln', '--error-file', '/tmp/tmpouptn3af']
+[2023-08-23 14:22:29,612] {standard_task_runner.py:80} INFO - Job 88: Subtask extract_and_transform_data
+[2023-08-23 14:22:29,707] {task_command.py:371} INFO - Running <TaskInstance: entregable3.extract_and_transform_data manual__2023-08-23T14:22:27.256328+00:00 [running]> on host eebeded14cb4
+[2023-08-23 14:22:29,809] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Yamil
+AIRFLOW_CTX_DAG_ID=entregable3
+AIRFLOW_CTX_TASK_ID=extract_and_transform_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-08-23T14:22:27.256328+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-08-23T14:22:27.256328+00:00
+[2023-08-23 14:22:37,443] {logging_mixin.py:115} INFO - No hay nuevos datos para cargar!!!
+[2023-08-23 14:22:37,444] {python.py:173} INFO - Done. Returned value was: None
+[2023-08-23 14:22:37,468] {taskinstance.py:1420} INFO - Marking task as SUCCESS. dag_id=entregable3, task_id=extract_and_transform_data, execution_date=20230823T142227, start_date=20230823T142229, end_date=20230823T142237
+[2023-08-23 14:22:37,529] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-08-23 14:22:37,567] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

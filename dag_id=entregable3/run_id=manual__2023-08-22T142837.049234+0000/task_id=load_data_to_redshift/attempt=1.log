@@ -1,0 +1,30 @@
+[2023-08-22 14:28:48,851] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: entregable3.load_data_to_redshift manual__2023-08-22T14:28:37.049234+00:00 [queued]>
+[2023-08-22 14:28:48,865] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: entregable3.load_data_to_redshift manual__2023-08-22T14:28:37.049234+00:00 [queued]>
+[2023-08-22 14:28:48,866] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-22 14:28:48,879] {taskinstance.py:1377} INFO - Starting attempt 1 of 6
+[2023-08-22 14:28:48,882] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-22 14:28:48,909] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): load_data_to_redshift> on 2023-08-22 14:28:37.049234+00:00
+[2023-08-22 14:28:48,916] {standard_task_runner.py:52} INFO - Started process 3315 to run task
+[2023-08-22 14:28:48,921] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'entregable3', 'load_data_to_redshift', 'manual__2023-08-22T14:28:37.049234+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/entregable.py', '--cfg-path', '/tmp/tmp_r5hvelq', '--error-file', '/tmp/tmp_uilsbsh']
+[2023-08-22 14:28:48,923] {standard_task_runner.py:80} INFO - Job 30: Subtask load_data_to_redshift
+[2023-08-22 14:28:49,024] {task_command.py:371} INFO - Running <TaskInstance: entregable3.load_data_to_redshift manual__2023-08-22T14:28:37.049234+00:00 [running]> on host eebeded14cb4
+[2023-08-22 14:28:49,143] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Yamil
+AIRFLOW_CTX_DAG_ID=entregable3
+AIRFLOW_CTX_TASK_ID=load_data_to_redshift
+AIRFLOW_CTX_EXECUTION_DATE=2023-08-22T14:28:37.049234+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-08-22T14:28:37.049234+00:00
+[2023-08-22 14:28:49,145] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+TypeError: load() missing 1 required positional argument: 'df_transformed'
+[2023-08-22 14:28:49,157] {taskinstance.py:1420} INFO - Marking task as UP_FOR_RETRY. dag_id=entregable3, task_id=load_data_to_redshift, execution_date=20230822T142837, start_date=20230822T142848, end_date=20230822T142849
+[2023-08-22 14:28:49,173] {standard_task_runner.py:97} ERROR - Failed to execute job 30 for task load_data_to_redshift (load() missing 1 required positional argument: 'df_transformed'; 3315)
+[2023-08-22 14:28:49,215] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-08-22 14:28:49,285] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
